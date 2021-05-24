@@ -14,7 +14,14 @@ var toggleTic = (event) => {
 const squares = document.querySelectorAll('td');
 squares.forEach((square) => square.addEventListener("click", toggleTic));
 
-// const rows = document.querySelectorAll('tr');
-// rows.forEach((row) => {
-//   const square = row.children
-// })
+var winAlert = () => {
+  const rows = document.querySelectorAll('tr');
+  rows.forEach((row) => {
+    const rowArr = Array.prototype.slice.call(row.children);
+    const textX = (element) => element.innerText === 'x';
+
+    if (rowArr.every(textX)) {
+      alert('You won!');
+    }
+  });
+};
