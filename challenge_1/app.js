@@ -1,5 +1,6 @@
 var player = 'x';
-var board = [];
+var boardX = [];
+var boardO = [];
 
 var switchPlayers = (currentPlayer) => {
   const caption = document.querySelector('caption');
@@ -18,12 +19,12 @@ var toggleSquare = (event) => {
   if (!square.innerText) {
     if (player === 'x') {
       square.innerText = 'x';
-      board.push(Number(square.id));
-      console.log('biardx', board);
+      boardX.push(Number(square.id));
+      console.log('biardx', boardX);
     } else {
       square.innerText = 'o';
-      board.push(Number(square.id));
-      console.log('biardo', board);
+      boardO.push(Number(square.id));
+      console.log('biardo', boardO);
     }
 
     switchPlayers(player);
@@ -43,16 +44,38 @@ var clearBoard = () => {
 
 
 var messageAlert = (event) => {
-  const rows = document.querySelectorAll('tr');
-  rows.forEach((row) => {
-    const rowArr = Array.prototype.slice.call(row.children);
-    const textX = (element) => element.innerText === 'x';
+  const winningCombos = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+    [1, 4, 7],
+    [2, 5, 8],
+    [3, 6, 9],
+    [1, 5, 9],
+    [9, 5, 1],
+    [3, 5, 7],
+    [7, 5, 3]
+  ];
 
-    if (rowArr.every(textX)) {
-      alert('You won!');
-      clearBoard();
+  winningCombos.forEach((combo) => {
+    if (combo.length === boardX.length && combo.every((value, index) => boardX[index] === value)) {
+      alert('Player X won!');
+    } else if (combo.length === boardO.length && combo.every((value, index) => boardO[index] === value)) {
+      alert('Player O won!');
     }
   });
+
+
+  // const rows = document.querySelectorAll('tr');
+  // rows.forEach((row) => {
+  //   const rowArr = Array.prototype.slice.call(row.children);
+  //   const textX = (element) => element.innerText === 'x';
+
+  //   if (rowArr.every(textX)) {
+  //     alert('You won!');
+  //     clearBoard();
+  //   }
+  // });
 };
 
 
