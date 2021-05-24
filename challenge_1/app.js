@@ -10,11 +10,7 @@ var toggleTic = (event) => {
   }
 };
 
-// event listener
-const squares = document.querySelectorAll('td');
-squares.forEach((square) => square.addEventListener("click", toggleTic));
-
-var winAlert = () => {
+var winAlert = (event) => {
   const rows = document.querySelectorAll('tr');
   rows.forEach((row) => {
     const rowArr = Array.prototype.slice.call(row.children);
@@ -25,3 +21,10 @@ var winAlert = () => {
     }
   });
 };
+
+// event listener
+const squares = document.querySelectorAll('td');
+squares.forEach((square) => square.addEventListener("click", toggleTic));
+
+const table = document.getElementById('boardgame');
+table.addEventListener("click", winAlert);
