@@ -1,10 +1,26 @@
+var player = 'x';
+var switchPlayers = (currentPlayer) => {
+  const caption = document.querySelector('caption');
+  if (currentPlayer === 'x') {
+    player = 'o';
+    caption.innerText = 'Player O';
+  } else {
+    player = 'x';
+    caption.innerText = 'Player X';
+  }
+}
+
 // function to toggle the square to an x
-var toggleTic = (event) => {
+var toggleSquare = (event) => {
   const square = event.target;
   if (!square.innerText) {
-    square.innerText = 'x';
-  } else {
-    square.innerText = "";
+    if (player === 'x'); {
+      square.innerText = 'x';
+    } else {
+      square.innerText = 'o';
+    }
+
+    switchPlayers(player);
   }
 };
 
@@ -14,17 +30,7 @@ var clearBoard = () => {
   squares.forEach((square) => square.innerText = "");
 }
 
-var player = "x";
-var switchPlayers = (currentPlayer) => {
-  const caption = document.querySelector('caption');
-  if (currentPlayer === "x") {
-    player = "o";
-    caption.innerText = "Player O";
-  } else {
-    player = "x";
-    caption.innerText = "Player X";
-  }
-}
+
 
 var messageAlert = (event) => {
   const board = ['', '', '',
@@ -47,7 +53,7 @@ var messageAlert = (event) => {
 
 // event listener
 const squares = document.querySelectorAll('td');
-squares.forEach((square) => square.addEventListener("click", toggleTic));
+squares.forEach((square) => square.addEventListener("click", toggleSquare));
 
 const table = document.getElementById('boardgame');
 table.addEventListener("click", messageAlert);
