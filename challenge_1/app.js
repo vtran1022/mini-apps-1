@@ -18,9 +18,15 @@ var winAlert = (event) => {
 
     if (rowArr.every(textX)) {
       alert('You won!');
+      clearBoard();
     }
   });
 };
+
+var clearBoard = () => {
+  const squares = document.querySelectorAll('td');
+  squares.forEach((square) => square.innerText = "");
+}
 
 // event listener
 const squares = document.querySelectorAll('td');
@@ -28,3 +34,6 @@ squares.forEach((square) => square.addEventListener("click", toggleTic));
 
 const table = document.getElementById('boardgame');
 table.addEventListener("click", winAlert);
+
+const reset = document.querySelector('button');
+reset.addEventListener("click", clearBoard);
