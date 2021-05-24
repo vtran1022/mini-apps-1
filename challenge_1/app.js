@@ -14,7 +14,7 @@ var switchPlayers = (currentPlayer) => {
 var toggleSquare = (event) => {
   const square = event.target;
   if (!square.innerText) {
-    if (player === 'x'); {
+    if (player === 'x') {
       square.innerText = 'x';
     } else {
       square.innerText = 'o';
@@ -28,6 +28,11 @@ var toggleSquare = (event) => {
 var clearBoard = () => {
   const squares = document.querySelectorAll('td');
   squares.forEach((square) => square.innerText = "");
+
+  const caption = document.querySelector('caption');
+  caption.innerText = 'Player X';
+
+  player = 'x';
 }
 
 
