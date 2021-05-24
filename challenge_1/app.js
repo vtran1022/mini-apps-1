@@ -1,5 +1,3 @@
-console.log('hello world');
-
 // function to toggle the square to an x
 var toggleTic = (event) => {
   const square = event.target;
@@ -10,7 +8,29 @@ var toggleTic = (event) => {
   }
 };
 
-var winAlert = (event) => {
+// func to clear the board
+var clearBoard = () => {
+  const squares = document.querySelectorAll('td');
+  squares.forEach((square) => square.innerText = "");
+}
+
+var player = "x";
+var switchPlayers = (currentPlayer) => {
+  const caption = document.querySelector('caption');
+  if (currentPlayer === "x") {
+    player = "o";
+    caption.innerText = "Player O";
+  } else {
+    player = "x";
+    caption.innerText = "Player X";
+  }
+}
+
+var messageAlert = (event) => {
+  const board = ['', '', '',
+                '', '', '',
+                '', '', ''];
+
   const rows = document.querySelectorAll('tr');
   rows.forEach((row) => {
     const rowArr = Array.prototype.slice.call(row.children);
@@ -23,17 +43,14 @@ var winAlert = (event) => {
   });
 };
 
-var clearBoard = () => {
-  const squares = document.querySelectorAll('td');
-  squares.forEach((square) => square.innerText = "");
-}
+
 
 // event listener
 const squares = document.querySelectorAll('td');
 squares.forEach((square) => square.addEventListener("click", toggleTic));
 
 const table = document.getElementById('boardgame');
-table.addEventListener("click", winAlert);
+table.addEventListener("click", messageAlert);
 
 const reset = document.querySelector('button');
 reset.addEventListener("click", clearBoard);
