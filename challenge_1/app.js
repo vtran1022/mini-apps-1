@@ -3,9 +3,12 @@ console.log('hello world');
 // function to toggle the square to an x
 var toggleTic = () => {
   const square = document.getElementById('square');
-  console.log('func');
-  if (square.value === '') {
-    square.value = 'x';
+  console.log('inner', square.innerHTML);
+  console.log('sq', square);
+  if (!square.innerHTML) {
+    square.innerHTML = 'x';
+  } else {
+    square.innerHTML = "";
   }
 };
 
