@@ -1,10 +1,9 @@
 console.log('hello world');
 
 // function to toggle the square to an x
-var toggleTic = () => {
-  const square = document.getElementById('square');
-  console.log('inner', square.innerHTML);
-  console.log('sq', square);
+var toggleTic = (event) => {
+  // const square = document.getElementById('square');
+  const square = event.target;
   if (!square.innerHTML) {
     square.innerHTML = 'x';
   } else {
@@ -13,5 +12,5 @@ var toggleTic = () => {
 };
 
 // event listener
-const square = document.getElementById('square');
-square.addEventListener("click", toggleTic, false);
+const squares = document.querySelectorAll('td');
+squares.forEach((square) => square.addEventListener("click", toggleTic, false));
