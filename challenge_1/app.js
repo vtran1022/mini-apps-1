@@ -1,4 +1,6 @@
 var player = 'x';
+var board = [];
+
 var switchPlayers = (currentPlayer) => {
   const caption = document.querySelector('caption');
   if (currentPlayer === 'x') {
@@ -16,8 +18,12 @@ var toggleSquare = (event) => {
   if (!square.innerText) {
     if (player === 'x') {
       square.innerText = 'x';
+      board.push(Number(square.id));
+      console.log('biardx', board);
     } else {
       square.innerText = 'o';
+      board.push(Number(square.id));
+      console.log('biardo', board);
     }
 
     switchPlayers(player);
@@ -36,12 +42,7 @@ var clearBoard = () => {
 }
 
 
-
 var messageAlert = (event) => {
-  const board = ['', '', '',
-                '', '', '',
-                '', '', ''];
-
   const rows = document.querySelectorAll('tr');
   rows.forEach((row) => {
     const rowArr = Array.prototype.slice.call(row.children);
