@@ -25,11 +25,9 @@ var toggleSquare = (event) => {
     if (player === 'x') {
       square.innerText = 'x';
       board[parentId][square.id] = 'x';
-      console.log('boardx', board);
     } else {
       square.innerText = 'o';
       board[parentId][square.id] = 'o'
-      console.log('boardo', board);
     }
 
     switchPlayers(player);
@@ -45,8 +43,11 @@ var clearBoard = () => {
   caption.innerText = 'Player X';
 
   player = 'x';
-  boardX = [[], [], []];
-  boardO = [[], [], []];
+  board = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0]
+  ];
 }
 
 
@@ -64,41 +65,17 @@ var messageAlert = (event) => {
     [6, 4, 2]
   ];
 
-  // for (let i = 0; i < winningCombos.length; i++) {
-  //   let combo = winningCombos[i];
-  //   for (let j = 0; j < boardX.length; j++) {
-  //     let xCombo = boardX[j];
+  for (let i = 0; i < board.length; i++) {
+    let row = board[i];
 
-  //     if (combo.length === xCombo.length && combo.every((value, index) => xCombo[index] === value)) {
-  //       alert('Player X won!');
-  //       clearBoard();
-  //     }
-  //   }
-  // }
+    for (let j =0; j < winningCombos.length; j++) {
+      let combo = winningCombos[j];
 
-  // winningCombos.forEach((combo) => {
-
-  // }
-
-  // winningCombos.forEach((combo) => {
-  //   if (combo.length === boardX.length && combo.every((value, index) => boardX[index] === value)) {
-  //     alert('Player X won!');
-  //   } else if (combo.length === boardO.length && combo.every((value, index) => boardO[index] === value)) {
-  //     alert('Player O won!');
-  //   }
-  // });
-
-
-  // const rows = document.querySelectorAll('tr');
-  // rows.forEach((row) => {
-  //   const rowArr = Array.prototype.slice.call(row.children);
-  //   const textX = (element) => element.innerText === 'x';
-
-  //   if (rowArr.every(textX)) {
-  //     alert('You won!');
-  //     clearBoard();
-  //   }
-  // });
+      if ((combo.every((index) => row[index] === 'x')) || combo.every((index) => row[index] === 'o')) {
+        alert(`Player ${row[i]} won!`);
+      }
+    }
+  }
 };
 
 
