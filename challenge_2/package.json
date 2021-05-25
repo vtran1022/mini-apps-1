@@ -1,0 +1,15 @@
+{
+  "name": "csv-report-generator",
+  "version": "1.0.0",
+  "description": "mini app two",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx nodemon ./server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
