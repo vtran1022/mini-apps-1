@@ -1,13 +1,19 @@
 <html>
-  <head></head>
+  <head>
+  </head>
   <body>
     <h1>JSON to CSV converter</h1>
-    <form method="post" action="/json_request">
+    <form method="get" action="/json_request">
       <div>
-        <input type="text" placeholder="text here">
-        <input type="submit" value="Submit">
+        <textarea name="jsonData"></textarea>
+      </div>
+      <div>
+      <button type="submit">Submit</button>
       </div>
     </form>
+    <div id="csv">
+      <textarea name="csvData"></textarea>
+    </div>
   </body>
   <script src="/app.js"></script>
 </html>
