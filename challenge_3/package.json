@@ -1,0 +1,24 @@
+{
+  "name": "multistep-checkout",
+  "version": "1.0.0",
+  "description": "mini app 3",
+  "main": "server.js",
+  "scripts": {
+    "test": "npx nodemon server.js",
+    "start": "node server.js",
+    "build": "npx babel ./client/app.jsx --watch --out-file ./public/app-compiled.js --source-maps inline"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.14.3",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-react": "^7.13.13",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}
