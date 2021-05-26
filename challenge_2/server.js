@@ -5,12 +5,11 @@ const PORT = 3000 || process.env.port;
 app.use(express.json());
 
 app.get('/json_request', (req, res) => {
-  console.log(req.query.jsonData);
-  res.send('boba');
+  const data = req.query.jsonData;
+  const parseJson = JSON.parse(data);
+  const csvConvert = convertHeader(parseJson) + convertValues(parseJson);
 
-  var data = req.query.jsonData;
-  var parseJson = JSON.parse(data);
-
+  res.send(csvConvert);
 })
 
 let convertHeader = (jsonData) => {
