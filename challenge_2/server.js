@@ -7,7 +7,48 @@ app.use(express.json());
 app.get('/json_request', (req, res) => {
   console.log(req.query.jsonData);
   res.send('boba');
+
+  var data = req.query.jsonData;
+  var parseJson = JSON.parse(data);
+
 })
+
+let convertHeader = (jsonData) => {
+  let cols = Object.keys(jsonData).filter((col) => {
+    return col !== 'children';
+  });
+
+  let headers = '';
+
+  cols.forEach((col) => headers += `${col},`);
+
+  return headers;
+};
+
+let convertValues = (data) => {
+  let cols = Object.values(data).filter((col) => {
+      return !Array.isArray(col);
+  });
+
+  let content = '';
+
+  cols.forEach((col, i) => {
+      if (i !== cols.length - 1) {
+          content += `${col},`;
+          } else {
+              content += `${col}\n`;
+          }
+
+  });
+
+  if (data.children.length !== 0) {
+      data.children.forEach((child) => {
+          content += convertValues(child);
+      });
+  }
+
+  return content;
+};
 
 app.use(express.static('client'));
 
