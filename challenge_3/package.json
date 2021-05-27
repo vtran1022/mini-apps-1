@@ -4,7 +4,7 @@
   "description": "mini app 3",
   "main": "server.js",
   "scripts": {
-    "test": "npx nodemon server.js",
+    "test": "npx nodemon ./server/server.js",
     "start": "node server.js",
     "build": "npx babel ./client/app.jsx --watch --out-file ./public/app-compiled.js --presets @babel/preset-react --source-maps inline"
   },
@@ -19,6 +19,7 @@
   "dependencies": {
     "bluebird": "^3.7.2",
     "express": "^4.17.1",
+    "mysql": "^2.18.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
