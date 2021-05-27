@@ -2,6 +2,7 @@ import React from 'react';
 import User from './user.jsx';
 import Shipping from './shipping.jsx';
 import Billing from './billing.jsx';
+import Confirmation from './confirmation.jsx';
 
 
 class App extends React.Component {
@@ -11,6 +12,7 @@ class App extends React.Component {
       userComponent: false,
       shippingComponent: false,
       billingComponent: false,
+      confirmationComponent: false,
       full_name: '',
       email: '',
       password: '',
@@ -49,11 +51,22 @@ class App extends React.Component {
         shippingComponent: false,
         billingComponent: true
       });
+    } else if (event.target.id === 'bill') {
+      this.setState({
+        billingComponent: false,
+        confirmationComponent: true
+      });
+    // } else if (event.target.id === 'conf') {
+    //   thi
     }
   }
 
   render() {
     const {
+      userComponent,
+      shippingComponent,
+      billingComponent,
+      confirmationComponent,
       full_name,
       email,
       password,
@@ -72,7 +85,7 @@ class App extends React.Component {
       <div className="home-page">
         <h1>Checkout</h1>
         <button id="checkout" onClick={this._onButton}>Checkout</button>
-        {this.state.userComponent
+        {userComponent
           ? <User
             next={this._onButton}
             change={this._handleChange}
@@ -82,7 +95,7 @@ class App extends React.Component {
             />
           : null
         }
-        {this.state.shippingComponent
+        {shippingComponent
           ? <Shipping
             next={this._onButton}
             change={this._handleChange}
@@ -94,10 +107,28 @@ class App extends React.Component {
             />
           : null
         }
-        {this.state.billingComponent
+        {billingComponent
           ? <Billing
             next={this._onButton}
             change={this._handleChange}
+            cc={credit_card}
+            exp={expiry_date}
+            cvv={CVV}
+            bzip={billing_zipcode}
+            />
+          : null
+        }
+        {confirmationComponent
+          ? <Confirmation
+            next={this._onButton}
+            name={full_name}
+            email={email}
+            pw={password}
+            line1={address_line1}
+            line2={address_line2}
+            city={city}
+            state={state}
+            zip={zipcode}
             cc={credit_card}
             exp={expiry_date}
             cvv={CVV}
