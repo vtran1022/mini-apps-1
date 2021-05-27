@@ -16,7 +16,7 @@ var Billing = ({ next, change, cc, exp, cvv, bzip }) => (
       <div>
       <input id="billing_zipcode" type="text" value={bzip} onChange={change} placeholder="billing zipcode"/>
       </div>
-      <button>Next</button>
+      <button id="bill" onClick={next}>Next</button>
     </form>
   </div>
 )
