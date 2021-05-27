@@ -6,19 +6,25 @@
   "scripts": {
     "test": "npx nodemon ./server/server.js",
     "start": "node server.js",
-    "build": "npx babel ./client/app.jsx --watch --out-file ./public/app-compiled.js --presets @babel/preset-react --source-maps inline"
+    "build": "npx babel ./client/src --out-dir ./client/dist/compiled --presets @babel/preset-react --ignore=node_modules --source-maps inline --watch",
+    "react-dev": "webpack --config ./webpack.config.js --mode development -w"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.14.3",
     "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
-    "nodemon": "^2.0.7"
+    "babel-loader": "^8.2.2",
+    "nodemon": "^2.0.7",
+    "webpack": "^5.38.0",
+    "webpack-cli": "^4.7.0"
   },
   "dependencies": {
     "bluebird": "^3.7.2",
     "express": "^4.17.1",
+    "morgan": "^1.10.0",
     "mysql": "^2.18.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"

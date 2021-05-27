@@ -14,8 +14,8 @@ CREATE TABLE users (
 
 CREATE TABLE shipping (
   id TINYINT unsigned NOT NULL AUTO_INCREMENT,
-  line1 VARCHAR(100) NOT NULL,
-  line2 VARCHAR(100) NOT NULL,
+  address_line1 VARCHAR(100) NOT NULL,
+  address_line2 VARCHAR(100) NOT NULL,
   city VARCHAR(100) NOT NULL,
   state VARCHAR(2) NOT NULL,
   zipcode VARCHAR(5) NOT NULL,
