@@ -10,10 +10,18 @@ class App extends React.Component {
     this.state = {
       userComponent: false,
       shippingComponent: false,
-      billingComponent: false
+      billingComponent: false,
+      full_name: '',
+      email: '',
+      password: ''
     };
 
     this._onButton = this._onButton.bind(this);
+    this._handleChange = this._handleChange.bind(this);
+  }
+
+  _handleChange(event) {
+    this.setState({ [event.target.id]: event.target.value });
   }
 
   _onButton(event) {
@@ -22,20 +30,26 @@ class App extends React.Component {
       this.setState({
         userComponent: true
       });
-    } else if (event.target.id === 'user') {
-    this.setState({
-      userComponent: false,
-      shippingComponent: true
-    });
-    } else if (event.target.id === 'ship') {
-      this.setState({
-        shippingComponent: false,
-        billingComponent: true
-      });
+    // } else if (event.target.id === 'user') {
+    // this.setState({
+    //   userComponent: false,
+    //   shippingComponent: true
+    // });
+    // } else if (event.target.id === 'ship') {
+    //   this.setState({
+    //     shippingComponent: false,
+    //     billingComponent: true
+    //   });
     }
   }
 
   render() {
+    const {
+      full_name,
+      email,
+      password
+    } = this.state;
+
     return (
       <div className="home-page">
         <h1>Checkout</h1>
@@ -43,9 +57,22 @@ class App extends React.Component {
         {this.state.userComponent
           ? <User
             next={this._onButton}
+            change={this._handleChange}
+            name={full_name}
+            email={email}
+            pw={password}
             />
           : null
         }
+      </div>
+    )
+  }
+}
+
+
+export default App;
+
+/*
         {this.state.shippingComponent
           ? <Shipping
             next={this._onButton}
@@ -58,10 +85,4 @@ class App extends React.Component {
             />
           : null
         }
-      </div>
-    )
-  }
-}
-
-
-export default App;
+*/
