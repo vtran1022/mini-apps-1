@@ -13,7 +13,16 @@ class App extends React.Component {
       billingComponent: false,
       full_name: '',
       email: '',
-      password: ''
+      password: '',
+      address_line1: '',
+      address_line2: '',
+      city: '',
+      state: '',
+      zipcode: '',
+      credit_card: '',
+      expiry_date: '',
+      CVV: '',
+      billing_zipcode: ''
     };
 
     this._onButton = this._onButton.bind(this);
@@ -30,16 +39,16 @@ class App extends React.Component {
       this.setState({
         userComponent: true
       });
-    // } else if (event.target.id === 'user') {
-    // this.setState({
-    //   userComponent: false,
-    //   shippingComponent: true
-    // });
-    // } else if (event.target.id === 'ship') {
-    //   this.setState({
-    //     shippingComponent: false,
-    //     billingComponent: true
-    //   });
+    } else if (event.target.id === 'user') {
+      this.setState({
+        userComponent: false,
+        shippingComponent: true
+      });
+    } else if (event.target.id === 'ship') {
+      this.setState({
+        shippingComponent: false,
+        billingComponent: true
+      });
     }
   }
 
@@ -47,7 +56,16 @@ class App extends React.Component {
     const {
       full_name,
       email,
-      password
+      password,
+      address_line1,
+      address_line2,
+      city,
+      state,
+      zipcode,
+      credit_card,
+      expiry_date,
+      CVV,
+      billing_zipcode
     } = this.state;
 
     return (
@@ -64,6 +82,29 @@ class App extends React.Component {
             />
           : null
         }
+        {this.state.shippingComponent
+          ? <Shipping
+            next={this._onButton}
+            change={this._handleChange}
+            line1={address_line1}
+            line2={address_line2}
+            city={city}
+            state={state}
+            zip={zipcode}
+            />
+          : null
+        }
+        {this.state.billingComponent
+          ? <Billing
+            next={this._onButton}
+            change={this._handleChange}
+            cc={credit_card}
+            exp={expiry_date}
+            cvv={CVV}
+            bzip={billing_zipcode}
+            />
+          : null
+        }
       </div>
     )
   }
@@ -71,18 +112,3 @@ class App extends React.Component {
 
 
 export default App;
-
-/*
-        {this.state.shippingComponent
-          ? <Shipping
-            next={this._onButton}
-            />
-          : null
-        }
-        {this.state.billingComponent
-          ? <Billing
-            next={this._onButton}
-            />
-          : null
-        }
-*/
