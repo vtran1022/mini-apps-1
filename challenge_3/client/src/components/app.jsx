@@ -62,7 +62,19 @@ class App extends React.Component {
     } else if (event.target.id === 'conf') {
       this.setState({
         confirmationComponent: false,
-        checkoutComponent: true
+        checkoutComponent: true,
+        full_name: '',
+        email: '',
+        password: '',
+        address_line1: '',
+        address_line2: '',
+        city: '',
+        state: '',
+        zipcode: '',
+        credit_card: '',
+        expiry_date: '',
+        CVV: '',
+        billing_zipcode: ''
       });
     }
   }
