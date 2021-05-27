@@ -3,12 +3,14 @@ import User from './user.jsx';
 import Shipping from './shipping.jsx';
 import Billing from './billing.jsx';
 import Confirmation from './confirmation.jsx';
+import Checkout from './checkout.jsx';
 
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      checkoutComponent: true,
       userComponent: false,
       shippingComponent: false,
       billingComponent: false,
@@ -39,6 +41,7 @@ class App extends React.Component {
     event.preventDefault();
     if (event.target.id === 'checkout') {
       this.setState({
+        checkoutComponent: false,
         userComponent: true
       });
     } else if (event.target.id === 'user') {
@@ -56,13 +59,17 @@ class App extends React.Component {
         billingComponent: false,
         confirmationComponent: true
       });
-    // } else if (event.target.id === 'conf') {
-    //   thi
+    } else if (event.target.id === 'conf') {
+      this.setState({
+        confirmationComponent: false,
+        checkoutComponent: true
+      });
     }
   }
 
   render() {
     const {
+      checkoutComponent,
       userComponent,
       shippingComponent,
       billingComponent,
@@ -83,8 +90,12 @@ class App extends React.Component {
 
     return (
       <div className="home-page">
-        <h1>Checkout</h1>
-        <button id="checkout" onClick={this._onButton}>Checkout</button>
+        {checkoutComponent
+          ? <Checkout
+            next={this._onButton}
+            />
+          : null
+        }
         {userComponent
           ? <User
             next={this._onButton}

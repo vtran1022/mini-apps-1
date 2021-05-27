@@ -18,7 +18,7 @@ var Confirmation = ({ next, name, email, pw, line1, line2, city, state, zip, cc,
     <p>{exp}</p>
     <p>{cvv}</p>
     <p>{bzip}</p>
-    <button>Purchase</button>
+    <button id="conf" onClick={next}>Purchase</button>
   </div>
 )
 
