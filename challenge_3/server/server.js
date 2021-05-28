@@ -11,9 +11,13 @@ app.use('/checkout', router);
 //   res.send('Hello Boba');
 // })
 
+// const controller = require('./controller.js');
+
+//Connect controller methods to their corresponding routes
+// app.post('/checkout/users', controller.postUser);
+
 app.use(express.static('client/dist'));
 
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 })
-

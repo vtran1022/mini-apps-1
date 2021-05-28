@@ -7,6 +7,7 @@ const insertUser = (params, callback) => {
 
   new Promise((resolve, reject) => {
     db.query(queryStr, params, (err, results) => {
+      console.log('modellll');
       err ? reject(err) : resolve(results)
     });
   });
