@@ -32,7 +32,7 @@ class App extends React.Component {
 
     this._onButton = this._onButton.bind(this);
     this._handleChange = this._handleChange.bind(this);
-    this._addUserInfo = this._addUserInfo.bind(this);
+    this._addInfoToDB = this._addInfoToDB.bind(this);
   }
 
   _handleChange(event) {
@@ -52,17 +52,21 @@ class App extends React.Component {
         shippingComponent: true
       });
 
-      this._addUserInfo();
+      this._addInfoToDB();
     } else if (event.target.id === 'ship') {
       this.setState({
         shippingComponent: false,
         billingComponent: true
       });
+
+      this._addInfoToDB();
     } else if (event.target.id === 'bill') {
       this.setState({
         billingComponent: false,
         confirmationComponent: true
       });
+
+      this._addInfoToDB();
     } else if (event.target.id === 'conf') {
       this.setState({
         confirmationComponent: false,
@@ -83,7 +87,7 @@ class App extends React.Component {
     }
   }
 
-  _addUserInfo() {
+  _addInfoToDB() {
     if (this.state.userComponent) {
       axios.post('/checkout/users', {
         full_name: this.state.full_name,
@@ -92,8 +96,28 @@ class App extends React.Component {
       })
         .then((response) => { console.log(response) })
         .catch((err) => { console.log(err) });
+    } else if (this.state.shippingComponent) {
+      axios.post('/checkout/shipping', {
+        address_line1: this.state.address_line1,
+        address_line2: this.state.address_line2,
+        city: this.state.city,
+        state: this.state.state,
+        zipcode: this.state.zipcode
+      })
+        .then((response) => { console.log(response) })
+        .catch((err) => { console.log(err) });
+    } else if (this.state.billingComponent) {
+      axios.post('/checkout/billing', {
+        credit_card: this.state.credit_card,
+        expiry_date: this.state.expiry_date,
+        CVV: this.state.CVV,
+        billing_zipcode: this.state.billing_zipcode
+      })
+        .then((response) => { console.log(response) })
+        .catch((err) => { console.log(err) });
     }
   }
+
 
   render() {
     const {
@@ -128,7 +152,6 @@ class App extends React.Component {
           ? <User
             next={this._onButton}
             change={this._handleChange}
-            addDB={this._addUserInfo}
             name={full_name}
             email={email}
             pw={password}

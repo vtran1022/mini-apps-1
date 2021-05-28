@@ -17,7 +17,7 @@ CREATE TABLE shipping (
   address_line1 VARCHAR(100),
   address_line2 VARCHAR(100),
   city VARCHAR(100),
-  state VARCHAR(2),
+  state VARCHAR(100),
   zipcode VARCHAR(5),
   PRIMARY KEY (id)
 );
