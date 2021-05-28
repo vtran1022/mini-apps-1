@@ -1,6 +1,6 @@
 import React from 'react';
 
-var User = ({ next, change, name, email, pw }) => (
+var User = ({ next, change, addDB, name, email, pw }) => (
   <div>
     <h3>User Information</h3>
     <form className="user">

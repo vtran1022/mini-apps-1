@@ -32,6 +32,7 @@ class App extends React.Component {
 
     this._onButton = this._onButton.bind(this);
     this._handleChange = this._handleChange.bind(this);
+    this._addUserInfo = this._addUserInfo.bind(this);
   }
 
   _handleChange(event) {
@@ -50,6 +51,8 @@ class App extends React.Component {
         userComponent: false,
         shippingComponent: true
       });
+
+      this._addUserInfo();
     } else if (event.target.id === 'ship') {
       this.setState({
         shippingComponent: false,
@@ -80,15 +83,16 @@ class App extends React.Component {
     }
   }
 
-  _addUserInfo(event) {
-    event.preventDefault();
-    axios.post('/checkout/users', {
-      full_name: this.state.full_name,
-      email: this.state.email,
-      password: this.state.password
-    })
-      .then((response) => { console.log(response) })
-      .catch((err) => { console.log(err) });
+  _addUserInfo() {
+    if (this.state.userComponent) {
+      axios.post('/checkout/users', {
+        full_name: this.state.full_name,
+        email: this.state.email,
+        password: this.state.password
+      })
+        .then((response) => { console.log(response) })
+        .catch((err) => { console.log(err) });
+    }
   }
 
   render() {
@@ -124,6 +128,7 @@ class App extends React.Component {
           ? <User
             next={this._onButton}
             change={this._handleChange}
+            addDB={this._addUserInfo}
             name={full_name}
             email={email}
             pw={password}
