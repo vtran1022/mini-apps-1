@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import User from './user.jsx';
 import Shipping from './shipping.jsx';
 import Billing from './billing.jsx';
@@ -77,6 +78,17 @@ class App extends React.Component {
         billing_zipcode: ''
       });
     }
+  }
+
+  _addUserInfo(event) {
+    event.preventDefault();
+    axios.post('/checkout/users', {
+      full_name: this.state.full_name,
+      email: this.state.email,
+      password: this.state.password
+    })
+      .then((response) => { console.log(response) })
+      .catch((err) => { console.log(err) });
   }
 
   render() {

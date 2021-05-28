@@ -9,7 +9,8 @@ const insertUser = (params, callback) => {
     db.query(queryStr, params, (err, results) => {
       err ? reject(err) : resolve(results)
     });
-}
+  });
+};
 
 module.exports = {
   insertUser

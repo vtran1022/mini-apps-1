@@ -1,10 +1,11 @@
 const express = require('express');
 const app = express();
 const port = 3000 || process.env.port;
-// const router = require('./routes.js');
+const router = require('./routes.js');
 
 app.use(express.json());
-// app.use('/checkout', router);
+
+app.use('/checkout', router);
 
 // app.get('/', (req, res) => {
 //   res.send('Hello Boba');
